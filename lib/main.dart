@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // ignore: prefer_const_constructors
       body: Center(
         child: const Text(
-          'Fresh Start App',
+          'Main App Screen',
         ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
