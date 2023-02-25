@@ -1,11 +1,22 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
-  const CategoryMealsScreen({super.key});
+  static const routeName ='/category_meals';
+// CategoryMealsScreen(
+//       {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final routesArgs =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+    final categoryTitle = routesArgs['title'];
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(categoryTitle!),
+      ),
+      body: const Center(
+        child: Text('REcipes View'),
+      ),
+    );
   }
 }
