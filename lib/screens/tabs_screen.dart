@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/favorite_screen.dart';
 import '../screens/categories_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -28,6 +29,7 @@ class _TabsScreenState extends State<TabsScreen> {
         title: Text(_pages[_selectedPageIndex]['title']),
       ),
       body: _pages[_selectedPageIndex]['page'],
+      drawer: const MainDrawer(),
       bottomNavigationBar: BottomNavigationBar(
           onTap: _selectTab,
           currentIndex: _selectedPageIndex,
