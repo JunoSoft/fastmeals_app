@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import './screens/category_meals_screen.dart';
@@ -13,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
- const  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -45,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         if (_filters['vegeterian']! && !meal.isVegetarian) {
           return false;
         }
-    throw '';
+        return true;
       }).toList();
     });
   }
@@ -58,7 +57,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           primarySwatch: Colors.pink,
           accentColor: Colors.amber,
-          canvasColor:const Color.fromRGBO(255, 254, 229, 1),
+          canvasColor: const Color.fromRGBO(255, 254, 229, 1),
           fontFamily: 'Raleway',
           textTheme: ThemeData.light().textTheme.copyWith(
               bodyLarge: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
@@ -74,8 +73,10 @@ class _MyAppState extends State<MyApp> {
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
         MealDetailsScreen.routeName: (ctx) => const MealDetailsScreen(),
-        FiltersScreen.routeName: (ctx) =>
-            FiltersScreen(saveFilters: _setFilters),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(
+              saveFilters: _setFilters,
+              currentFilters: _filters,
+            ),
       },
     );
   }

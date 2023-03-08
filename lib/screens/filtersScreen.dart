@@ -3,8 +3,13 @@ import '../widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
-  final VoidCallback saveFilters;
-   const FiltersScreen({required this.saveFilters,super.key,});
+  final Function saveFilters;
+  final Map<String, bool> currentFilters;
+  FiltersScreen({
+    required this.currentFilters,
+    required this.saveFilters,
+    super.key,
+  });
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -12,9 +17,19 @@ class FiltersScreen extends StatefulWidget {
 
 class _FiltersScreenState extends State<FiltersScreen> {
   bool _glutenFree = false;
+  bool _lactoseFree = false;
   bool _vegeterian = false;
   bool _vegan = false;
-  bool _lactoseFree = false;
+  @override
+  void initState() {
+    _glutenFree = widget.currentFilters['gluten']!;
+    _lactoseFree = widget.currentFilters['lactose']!;
+    _vegeterian = widget.currentFilters['vegeterian']!;
+    _vegan = widget.currentFilters['vegan']!;
+    // TODO: implement initState
+    super.initState();
+  }
+
   Widget _buildSwitchListTile(String title, String description,
       bool currentValue, Function updatedValue) {
     return SwitchListTile(
@@ -28,11 +43,23 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
         appBar: AppBar(
           title: const Text('Filters'),
-          actions: <Widget>  [IconButton( icon:const Icon(Icons.save),onPressed: widget.saveFilters,)],
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.save),
+              onPressed: () {
+                final selectedFilters = {
+                  'gluten': _glutenFree,
+                  'lactose': _lactoseFree,
+                  'vegan': _vegan,
+                  'vegeterian': _vegeterian
+                };
+                widget.saveFilters(selectedFilters);
+              },
+            )
+          ],
         ),
         drawer: const MainDrawer(),
         body: Column(
