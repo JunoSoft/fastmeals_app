@@ -4,7 +4,7 @@ import '../widgets/main_drawer.dart';
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
   final VoidCallback saveFilters;
-   const FiltersScreen({super.key,required this.saveFilters});
+   const FiltersScreen({required this.saveFilters,super.key,});
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
